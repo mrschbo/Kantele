@@ -1,114 +1,291 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Kantele</title>
-    <style>
-      :root {
-        --bg: #0f172a;
-        --panel: #111827;
-        --panel-2: #1f2937;
-        --text: #e5e7eb;
-        --muted: #94a3b8;
-        --primary: #8b5cf6;
-        --accent: #22c55e;
-      }
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kantele Waldorf — Guia das Cordas</title>
 
-      * { box-sizing: border-box; }
+<style>
+:root {
+  --paper: #fbf7ef;
+  --ink: #292821;
+  --muted: #706b61;
+  --wood: #d6ad78;
+  --wood-dark: #8e6039;
+  --green: #426b5a;
+}
 
-      body {
-        margin: 0;
-        min-height: 100vh;
-        display: grid;
-        place-items: center;
-        font-family: Arial, Helvetica, sans-serif;
-        background: linear-gradient(135deg, var(--bg), #111827 35%, #1e293b);
-        color: var(--text);
-      }
+* { box-sizing: border-box; }
 
-      .card {
-        width: min(90vw, 760px);
-        background: rgba(17, 24, 39, 0.9);
-        border: 1px solid rgba(148, 163, 184, 0.2);
-        border-radius: 20px;
-        box-shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
-        padding: 48px 32px;
-      }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: 16px/1.5 system-ui, sans-serif;
+}
 
-      .eyebrow {
-        display: inline-block;
-        padding: 8px 12px;
-        border-radius: 999px;
-        background: rgba(139, 92, 246, 0.14);
-        color: #ddd6fe;
-        font-size: 12px;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        font-weight: 700;
-      }
+main {
+  max-width: 850px;
+  margin: auto;
+  padding: 22px 14px 44px;
+}
 
-      h1 {
-        margin: 18px 0 12px;
-        font-size: clamp(2.5rem, 5vw, 4rem);
-        line-height: 1.05;
-      }
+h1 {
+  font-size: clamp(1.8rem, 5vw, 2.5rem);
+  line-height: 1.12;
+  margin: 0 0 8px;
+}
 
-      p {
-        margin: 0 0 24px;
-        color: var(--muted);
-        font-size: 1.08rem;
-        line-height: 1.7;
-      }
+h2 {
+  font-size: 1.2rem;
+  margin: 24px 0 8px;
+}
 
-      .actions {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 14px;
-      }
+.muted { color: var(--muted); }
 
-      a.button {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        padding: 14px 20px;
-        border-radius: 12px;
-        text-decoration: none;
-        font-weight: 700;
-        transition: transform 0.2s ease, opacity 0.2s ease;
-      }
+.panel {
+  background: white;
+  border: 1px solid #e9e0d2;
+  border-radius: 18px;
+  padding: 14px;
+  box-shadow: 0 4px 18px #35220c08;
+}
 
-      a.button:hover {
-        transform: translateY(-1px);
-      }
+svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
 
-      a.button.primary {
-        background: linear-gradient(135deg, var(--primary), #a78bfa);
-        color: white;
-      }
+.key {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 6px;
+  margin-top: 10px;
+}
 
-      a.button.secondary {
-        background: rgba(148, 163, 184, 0.08);
-        color: var(--text);
-        border: 1px solid rgba(148, 163, 184, 0.2);
-      }
-    </style>
-  </head>
-  <body>
-    <main class="card">
-      <span class="eyebrow">Projeto</span>
-      <h1>Kantele</h1>
-      <p>
-        Página inicial do repositório. Aqui você pode apresentar o projeto, explicar
-        sua finalidade e apontar para documentação ou arquivos importantes.
-      </p>
+.note {
+  border: 1px solid #e8dfd2;
+  border-radius: 10px;
+  padding: 8px 2px;
+  text-align: center;
+  background: #fffdf8;
+}
 
-      <div class="actions">
-        <a class="button primary" href="README.md">Abrir README</a>
-        <a class="button secondary" href="https://github.com/mrschbo/Kantele" target="_blank" rel="noreferrer">
-          Ver no GitHub
-        </a>
-      </div>
-    </main>
-  </body>
+.note b {
+  display: block;
+  font-size: clamp(1rem, 3.8vw, 1.35rem);
+}
+
+.note small {
+  font-size: clamp(.62rem, 2.3vw, .78rem);
+  color: var(--muted);
+}
+
+.tip {
+  background: #edf4ef;
+  border-left: 4px solid var(--green);
+  padding: 12px;
+  border-radius: 8px;
+}
+
+.practice {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+button {
+  background: var(--green);
+  color: white;
+  border: 0;
+  border-radius: 999px;
+  padding: 10px 15px;
+  font: inherit;
+  cursor: pointer;
+}
+
+a { color: #245b48; }
+
+.small { font-size: .9rem; }
+
+@media(max-width:400px) {
+  main { padding: 16px 10px 36px; }
+  .panel { padding: 8px; }
+  .note { padding: 7px 1px; }
+}
+</style>
+</head>
+
+<body>
+<main>
+
+<h1>Kantele pentatônico</h1>
+
+<p class="muted">
+Guia visual inspirado no uso do kantele na pedagogia Waldorf:
+escutar, tocar com delicadeza e explorar as notas sem precisar
+começar pela leitura musical.
+</p>
+
+<section class="panel">
+<h2>As 7 cordas</h2>
+
+<p>
+Afinação de referência do kantele pentatônico Waldorf,
+da corda mais grave à mais aguda:
+</p>
+
+<svg viewBox="0 0 700 365" role="img"
+aria-labelledby="title desc">
+
+<title id="title">
+Kantele de sete cordas: Ré, Mi, Sol, Lá, Si, Ré, Mi
+</title>
+
+<desc id="desc">
+Desenho de um instrumento de madeira com sete cordas identificadas.
+</desc>
+
+<path d="M65 88 Q80 54 135 57 L608 82 Q646 85 635 124 L584 282 Q576 307 540 300 L89 252 Q56 248 59 213 Z"
+fill="#d6ad78" stroke="#8e6039" stroke-width="4"/>
+
+<path d="M88 101 Q105 80 142 82 L602 106"
+fill="none" stroke="#eed0a5" stroke-width="3"/>
+
+<circle cx="104" cy="205" r="21"
+fill="#9c7049" stroke="#704727" stroke-width="3"/>
+
+<circle cx="104" cy="205" r="10" fill="#f7dfb8"/>
+
+<g stroke="#684529" stroke-width="1.7">
+<line x1="125" y1="82" x2="525" y2="291"/>
+<line x1="135" y1="78" x2="535" y2="286"/>
+<line x1="145" y1="73" x2="545" y2="281"/>
+<line x1="155" y1="69" x2="555" y2="276"/>
+<line x1="165" y1="65" x2="565" y2="271"/>
+<line x1="175" y1="62" x2="575" y2="266"/>
+<line x1="185" y1="60" x2="585" y2="261"/>
+</g>
+
+<g fill="#fffaf2" stroke="#8e6039" stroke-width="2">
+<circle cx="125" cy="82" r="6"/>
+<circle cx="135" cy="78" r="6"/>
+<circle cx="145" cy="73" r="6"/>
+<circle cx="155" cy="69" r="6"/>
+<circle cx="165" cy="65" r="6"/>
+<circle cx="175" cy="62" r="6"/>
+<circle cx="185" cy="60" r="6"/>
+</g>
+
+<g font-family="system-ui,sans-serif"
+text-anchor="middle" font-weight="700" font-size="18">
+
+<rect x="182" y="93" width="42" height="34" rx="10" fill="#fffaf2"/>
+<text x="203" y="116" fill="#292821">Ré</text>
+
+<rect x="235" y="120" width="42" height="34" rx="10" fill="#fffaf2"/>
+<text x="256" y="143" fill="#292821">Mi</text>
+
+<rect x="288" y="148" width="42" height="34" rx="10" fill="#fffaf2"/>
+<text x="309" y="171" fill="#292821">Sol</text>
+
+<rect x="341" y="176" width="42" height="34" rx="10" fill="#fffaf2"/>
+<text x="362" y="199" fill="#292821">Lá</text>
+
+<rect x="394" y="204" width="42" height="34" rx="10" fill="#fffaf2"/>
+<text x="415" y="227" fill="#292821">Si</text>
+
+<rect x="447" y="232" width="42" height="34" rx="10" fill="#fffaf2"/>
+<text x="468" y="255" fill="#292821">Ré</text>
+
+<rect x="500" y="259" width="42" height="34" rx="10" fill="#fffaf2"/>
+<text x="521" y="282" fill="#292821">Mi</text>
+
+</g>
+
+<text x="60" y="340" font-family="system-ui,sans-serif"
+font-size="15" fill="#706b61">Mais grave</text>
+
+<path d="M155 335 H520" stroke="#706b61" stroke-width="1.5"/>
+<path d="M512 329 L522 335 L512 341"
+fill="none" stroke="#706b61" stroke-width="1.5"/>
+
+<text x="640" y="340" text-anchor="end"
+font-family="system-ui,sans-serif" font-size="15"
+fill="#706b61">Mais aguda</text>
+
+</svg>
+
+<div class="key">
+<div class="note"><b>Ré</b><small>corda 1</small></div>
+<div class="note"><b>Mi</b><small>corda 2</small></div>
+<div class="note"><b>Sol</b><small>corda 3</small></div>
+<div class="note"><b>Lá</b><small>corda 4</small></div>
+<div class="note"><b>Si</b><small>corda 5</small></div>
+<div class="note"><b>Ré</b><small>corda 6</small></div>
+<div class="note"><b>Mi</b><small>corda 7</small></div>
+</div>
+
+</section>
+
+<h2>Prática de escuta</h2>
+
+<section class="panel practice">
+<div>
+<div class="muted small">
+Toque uma corda de cada vez e ouça o som até ele desaparecer.
+</div>
+
+<div id="prompt" aria-live="polite">
+<b>Corda 1 — Ré</b>
+</div>
+</div>
+
+<button id="next" type="button">Próxima corda</button>
+</section>
+
+<h2>Como praticar</h2>
+
+<p>1. Toque as cordas lentamente, da mais grave à mais aguda.</p>
+
+<p>2. Desça na ordem inversa, escutando como cada som se relaciona com o anterior.</p>
+
+<p>3. Depois improvise livremente usando as sete cordas, sem se preocupar em criar uma melodia certa.</p>
+
+<p class="tip">
+<b>Importante:</b> esta é uma afinação de referência comum
+no kantele pentatônico de sete cordas. A afinação pode variar
+entre instrumentos e métodos. Não gire as cravelhas antes
+de confirmar a afinação indicada pelo fabricante ou professor.
+</p>
+
+<p class="small">
+Referências:
+<a href="https://kanteleum.com/afinando/" target="_blank" rel="noopener noreferrer">
+Kantele Um — afinando
+</a>
+·
+<a href="https://waldorfmusic.org/faqs/" target="_blank" rel="noopener noreferrer">
+Association for Waldorf Music Education — Mood of the Fifth
+</a>
+</p>
+
+</main>
+
+<script>
+const notes = ["Ré", "Mi", "Sol", "Lá", "Si", "Ré", "Mi"];
+let i = 0;
+
+document.getElementById("next").addEventListener("click", () => {
+  i = (i + 1) % notes.length;
+
+  document.getElementById("prompt").innerHTML =
+    "<b>Corda " + (i + 1) + " — " + notes[i] + "</b>";
+});
+</script>
+
+</body>
 </html>
