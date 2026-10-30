@@ -336,31 +336,33 @@ Association for Waldorf Music Education — Mood of the Fifth
 const notes = ["Ré", "Mi", "Sol", "Lá", "Si", "Ré", "Mi"];
 let i = 0;
 
-const noteEls = [...document.querySelectorAll('.note')];
-const labelEls = [...document.querySelectorAll('.string-label')];
+function selectString(index) {
+  document.querySelectorAll(".string-label")
+    .forEach((el, i) => {
+      el.classList.toggle("active", i === index);
+    });
 
-function setActive(index) {
-  noteEls.forEach((el, idx) => {
-    el.classList.toggle('active', idx === index);
-  });
+  document.querySelectorAll(".note")
+    .forEach((el, i) => {
+      el.classList.toggle("active", i === index);
+    });
 
-  labelEls.forEach((el, idx) => {
-    el.classList.toggle('active', idx === index);
-  });
-
-  document.getElementById('prompt').innerHTML = '<b>Corda ' + (index + 1) + ' — ' + notes[index] + '</b>';
+  document.getElementById("prompt").innerHTML =
+    "<b>Corda " + (index + 1) +
+    " — " + notes[index] + "</b>";
 }
 
-noteEls.forEach((el, index) => {
-  el.addEventListener('click', () => setActive(index));
+document.querySelectorAll(".note").forEach((el, index) => {
+  el.style.cursor = "pointer";
+  el.addEventListener("click", () => selectString(index));
 });
 
-document.getElementById('next').addEventListener('click', () => {
+document.getElementById("next").addEventListener("click", () => {
   i = (i + 1) % notes.length;
-  setActive(i);
+  selectString(i);
 });
 
-setActive(0);
+selectString(0);
 </script>
 
 </body>
