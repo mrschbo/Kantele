@@ -70,6 +70,8 @@ svg {
   padding: 8px 2px;
   text-align: center;
   background: #fffdf8;
+  cursor: pointer;
+  transition: background .2s;
 }
 
 .note b {
@@ -80,6 +82,21 @@ svg {
 .note small {
   font-size: clamp(.62rem, 2.3vw, .78rem);
   color: var(--muted);
+}
+
+.note.active {
+  background: #dcebe1;
+  border: 2px solid #426b5a;
+}
+
+.string-label.active rect {
+  fill: #426b5a;
+  stroke: #244b45;
+  stroke-width: 3;
+}
+
+.string-label.active text {
+  fill: white;
 }
 
 .tip {
@@ -183,26 +200,40 @@ fill="#9c7049" stroke="#704727" stroke-width="3"/>
 <g font-family="system-ui,sans-serif"
 text-anchor="middle" font-weight="700" font-size="18">
 
+<g class="string-label">
 <rect x="182" y="93" width="42" height="34" rx="10" fill="#fffaf2"/>
 <text x="203" y="116" fill="#292821">Ré</text>
+</g>
 
+<g class="string-label">
 <rect x="235" y="120" width="42" height="34" rx="10" fill="#fffaf2"/>
 <text x="256" y="143" fill="#292821">Mi</text>
+</g>
 
+<g class="string-label">
 <rect x="288" y="148" width="42" height="34" rx="10" fill="#fffaf2"/>
 <text x="309" y="171" fill="#292821">Sol</text>
+</g>
 
+<g class="string-label">
 <rect x="341" y="176" width="42" height="34" rx="10" fill="#fffaf2"/>
 <text x="362" y="199" fill="#292821">Lá</text>
+</g>
 
+<g class="string-label">
 <rect x="394" y="204" width="42" height="34" rx="10" fill="#fffaf2"/>
 <text x="415" y="227" fill="#292821">Si</text>
+</g>
 
+<g class="string-label">
 <rect x="447" y="232" width="42" height="34" rx="10" fill="#fffaf2"/>
 <text x="468" y="255" fill="#292821">Ré</text>
+</g>
 
+<g class="string-label">
 <rect x="500" y="259" width="42" height="34" rx="10" fill="#fffaf2"/>
 <text x="521" y="282" fill="#292821">Mi</text>
+</g>
 
 </g>
 
@@ -272,7 +303,7 @@ Toque uma corda de cada vez e ouça o som até ele desaparecer.
     </iframe>
   </div>
 </section>
-  
+
 <h2>Como praticar</h2>
 
 <p>1. Toque as cordas lentamente, da mais grave à mais aguda.</p>
@@ -305,12 +336,31 @@ Association for Waldorf Music Education — Mood of the Fifth
 const notes = ["Ré", "Mi", "Sol", "Lá", "Si", "Ré", "Mi"];
 let i = 0;
 
-document.getElementById("next").addEventListener("click", () => {
-  i = (i + 1) % notes.length;
+const noteEls = [...document.querySelectorAll('.note')];
+const labelEls = [...document.querySelectorAll('.string-label')];
 
-  document.getElementById("prompt").innerHTML =
-    "<b>Corda " + (i + 1) + " — " + notes[i] + "</b>";
+function setActive(index) {
+  noteEls.forEach((el, idx) => {
+    el.classList.toggle('active', idx === index);
+  });
+
+  labelEls.forEach((el, idx) => {
+    el.classList.toggle('active', idx === index);
+  });
+
+  document.getElementById('prompt').innerHTML = '<b>Corda ' + (index + 1) + ' — ' + notes[index] + '</b>';
+}
+
+noteEls.forEach((el, index) => {
+  el.addEventListener('click', () => setActive(index));
 });
+
+document.getElementById('next').addEventListener('click', () => {
+  i = (i + 1) % notes.length;
+  setActive(i);
+});
+
+setActive(0);
 </script>
 
 </body>
